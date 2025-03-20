@@ -11,6 +11,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles_cart.css">
 
     <!-- TITTLE -->
     <title>Document</title>
@@ -25,12 +26,18 @@
                 <a href="#"><p>Calzado</p></a>
                 <a class="hitbox" href="./cart.html"><img class="cart" src="./img/bag.svg" alt="shopping cart"><div id="cart-countdown">0</div></a>
             </div>
-            
-            <!-- <span id="cart-countdown">0</span> -->
+
         </nav>
     </header>
 
     <main>
+        <section id="products-container"></section>
+        <section id="totals">
+            <p>Total unidades: <span id="units">0</span></p>
+            <p>Total precio: $<span id="price">0</span></p>
+            <button class="btnBuy" disabled>Comprar</button>
+            <button class="btnRst">Reiniciar carrito</button>
+        </section>
     </main>
 
     <footer>
@@ -39,7 +46,7 @@
     </footer>
 
     <!-- JS -->
-    <script src="./js/products.js"></script>
-    <script src="./js/script.js"></script>
+    <script src="./js/cart.js" defer></script>
+    <script src="./js/cartInfo.js" defer></script>
 </body>
 </html>

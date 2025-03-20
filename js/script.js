@@ -1,5 +1,9 @@
 const cardsContainer = document.getElementById("products-container")
 
+if (!localStorage.getItem("allProducts")) {
+    localStorage.setItem("allProducts", JSON.stringify(allProducts));
+}
+
 function createStartCards(products) {
     products.forEach(product => {
         const newProduct = document.createElement("div");
@@ -10,7 +14,10 @@ function createStartCards(products) {
         <p class="priceProduct">$${product.price}</p>
         <button class="btnadd">Agregar al carrito</button>`
         cardsContainer.appendChild(newProduct);
+        newProduct.getElementsByTagName("button")[0].addEventListener("click", () => addToCart(product));
     });
 }
 
 createStartCards(allProducts);
+
+
