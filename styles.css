@@ -76,3 +76,7 @@ footer p {
     font-size: 20px;
     margin: 1rem 0;
 }
+
+.hidden {
+    display: none;
+}

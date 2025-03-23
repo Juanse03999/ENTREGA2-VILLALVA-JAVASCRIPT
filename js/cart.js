@@ -1,40 +1,13 @@
-// const cardsContainer = document.getElementById("products-container")
-
-// function createStartCards() {
-//     cardsContainer.innerHTML = "";
-//     const products = JSON.parse(localStorage.getItem("allProducts"));
-//     if (products && products.length > 0) {
-//         products.forEach(product => {
-//             const newProduct = document.createElement("div");
-//             newProduct.classList = "product-card";
-//             newProduct.innerHTML =  `
-//             <img src="./img/${product.id}.jpeg">
-//             <h3 class="productName">${product.name}</h3>
-//             <p class="priceProduct">$${product.price}</p>
-//             <div>
-//                 <button class="lessProduct">-</button>
-//                 <span class="amount">0</span>
-//                 <button class="moreProduct">+</button>
-//             </div>
-//             `;
-//             cardsContainer.appendChild(newProduct);
-//             newProduct.getElementsByTagName("button")[1].addEventListener("click", () => addToCart(product));
-//             newProduct.getElementsByTagName("button")[0].addEventListener("click", () => {
-//                 quitToCart(product)
-//                 createStartCards();
-//             });
-//         });
-//     }
-// }
-
-
-// createStartCards();
-
 const cardsContainer = document.getElementById("products-container");
+const elementUnits = document.getElementById("units");
+const elementPrice = document.getElementById("price");
+const elementEmptyCart = document.getElementById("empty-cart");
+const elementTotals = document.getElementById("totals");
+const elementResetCart = document.getElementById("btnRst")
 
 function createStartCards() {
-    cardsContainer.innerHTML = ""; // Limpiar el contenedor antes de renderizar
-    const products = JSON.parse(localStorage.getItem("Remeras")) || []; // Obtener productos del carrito
+    cardsContainer.innerHTML = "";
+    const products = JSON.parse(localStorage.getItem("Remeras")) || [];
 
     if (products && products.length > 0) {
         products.forEach(product => {
@@ -52,20 +25,58 @@ function createStartCards() {
             `;
             cardsContainer.appendChild(newProduct);
 
-            // Agregar eventos a los botones
-            newProduct.querySelector(".moreProduct").addEventListener("click", (e) =>  {
+            newProduct.querySelector(".moreProduct").addEventListener("click", (e) => {
                 const countElement = e.target.parentElement.getElementsByTagName("span")[0];
                 countElement.innerText = addToCart(product);
+                upadteTotals();
             });
+
             newProduct.querySelector(".lessProduct").addEventListener("click", () => {
                 quitToCart(product);
                 createStartCards();
+                upadteTotals();
             });
         });
-    } else {
-        // Si no hay productos en el carrito, mostrar un mensaje o dejar el contenedor vacío
-        cardsContainer.innerHTML = `<p>No hay productos en el carrito.</p>`;
     }
 }
 
 createStartCards();
+upadteTotals();
+
+function upadteTotals() {
+    const products = JSON.parse(localStorage.getItem("Remeras"));
+    let units = 0;
+    let price = 0;
+    if (products && products.length > 0) {
+        products.forEach(product => {
+            units += product.amount;
+            price += product.price * product.amount;
+        })
+        elementUnits.innerText = units;
+        elementPrice.innerText = price;
+    }
+    checkEmptyMessage();
+}
+
+function checkEmptyMessage() {
+    const products = JSON.parse(localStorage.getItem("Remeras"));
+
+    if (products.length === 0) {
+        elementEmptyCart.classList.remove("hidden"); 
+        elementTotals.classList.add("hidden");
+    } else {
+        elementEmptyCart.classList.add("hidden");mensaje
+        elementTotals.classList.remove("hidden");
+    }
+}
+
+checkEmptyMessage();
+
+
+elementResetCart.addEventListener("click", resetCart)
+function resetCart() {
+    localStorage.removeItem("Remeras");
+    upadteTotals();
+    createStartCards();
+
+}

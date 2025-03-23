@@ -62,11 +62,15 @@ main #totals {
     padding: 1rem 0;
 }
 
-.btnBuy, .btnRst {
+#btnBuy, #btnRst {
     background-color: #20a7d8;
     border-radius: 25px;
     border: 2px solid black;
     cursor: pointer;
     margin-top: 1rem;
     padding: 0.5rem 1rem;
+}
+
+#empty-cart {
+    margin: 3rem;
 }
