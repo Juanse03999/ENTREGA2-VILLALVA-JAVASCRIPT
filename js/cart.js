@@ -65,7 +65,7 @@ function checkEmptyMessage() {
         elementEmptyCart.classList.remove("hidden"); 
         elementTotals.classList.add("hidden");
     } else {
-        elementEmptyCart.classList.add("hidden");
+        elementEmptyCart.classList.add("hidden");    
         elementTotals.classList.remove("hidden");
     }
 }
