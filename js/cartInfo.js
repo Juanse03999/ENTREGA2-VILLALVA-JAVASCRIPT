@@ -43,7 +43,6 @@ function quitToCart(product) {
     }
 
     localStorage.setItem("Remeras", JSON.stringify(storage));
-
     updateCartNum();
 }
 
@@ -59,12 +58,8 @@ const cartCountdownElement = document.getElementById("cart-countdown");
 function updateCartNum() {
     const storageString = localStorage.getItem("Remeras");
     const storage = storageString ? JSON.parse(storageString) : [];
-    if (storage && count.lenght > 0) {
-        const count = storage.reduce((acum, current) => acum+current.amount, 0);
-        cartCountdownElement.innerText = count;
-    } else {
-        cartCountdownElement.innerText = 0;
-    }
+    const count = storage.reduce((acum, current) => acum + current.amount, 0);
+    cartCountdownElement.innerText = count;
 }
 
 updateCartNum();
