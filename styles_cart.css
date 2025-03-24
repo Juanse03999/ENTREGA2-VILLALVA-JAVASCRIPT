@@ -62,7 +62,7 @@ main #totals {
     padding: 1rem 0;
 }
 
-#btnBuy, #btnRst {
+#btnBuyDiscount, #btnRst {
     background-color: #20a7d8;
     border-radius: 25px;
     border: 2px solid black;

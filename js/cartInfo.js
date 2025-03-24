@@ -56,10 +56,14 @@ function getNewProductForStorage(product) {
 // ACTUALIZAR NUMERO DE CARRITO:
 const cartCountdownElement = document.getElementById("cart-countdown");
 function updateCartNum() {
-    const storageString = localStorage.getItem("Remeras");
-    const storage = storageString ? JSON.parse(storageString) : [];
-    const count = storage.reduce((acum, current) => acum + current.amount, 0);
-    cartCountdownElement.innerText = count;
+    const storage = JSON.parse(localStorage.getItem("Remeras"));
+    if (storage && storage.length > 0) {
+        const count = storage.reduce((acum, current) => acum + current.amount, 0);
+        cartCountdownElement.innerText = count;
+    } else {
+        cartCountdownElement.innerText = 0;
+    }
 }
-
 updateCartNum();
+
+

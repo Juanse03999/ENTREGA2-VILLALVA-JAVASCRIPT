@@ -3,7 +3,7 @@ const elementUnits = document.getElementById("units");
 const elementPrice = document.getElementById("price");
 const elementEmptyCart = document.getElementById("empty-cart");
 const elementTotals = document.getElementById("totals");
-const elementResetCart = document.getElementById("btnRst")
+const elementResetCart = document.getElementById("btnRst");
 
 function createStartCards() {
     cardsContainer.innerHTML = "";
@@ -61,22 +61,20 @@ function upadteTotals() {
 function checkEmptyMessage() {
     const products = JSON.parse(localStorage.getItem("Remeras"));
 
-    if (products.length === 0) {
+    if (!products || products.length === 0) {
         elementEmptyCart.classList.remove("hidden"); 
         elementTotals.classList.add("hidden");
     } else {
-        elementEmptyCart.classList.add("hidden");mensaje
+        elementEmptyCart.classList.add("hidden");
         elementTotals.classList.remove("hidden");
     }
 }
-
 checkEmptyMessage();
-
 
 elementResetCart.addEventListener("click", resetCart)
 function resetCart() {
     localStorage.removeItem("Remeras");
     upadteTotals();
     createStartCards();
-
+    updateCartNum();
 }
